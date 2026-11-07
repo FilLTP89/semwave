@@ -12,6 +12,17 @@ layer.
 | `semwave.sem_wave` | `SEMWave2D`: GLL spectral elements, lumped mass, explicit central differences, Ricker point force or extended fault, Cerjan sponge, free surface, Rayleigh damping, optional tilted TI fabric | **yes** |
 | `semwave.sem_wave_vp` | `SEMWaveVP2D`: the same, with the stress carried at the GLL points so a surficial layer can be visco-plastic | **yes** |
 
+## Scientific outputs
+
+The repository includes the figures produced for the HDR presentation,
+together with the SEM workflows used to regenerate the main wave-propagation
+results.
+
+[![Ballistic front and scattered coda](docs/figures/hdr/hdr_ballistic_coda.png)](docs/hdr-gallery.md)
+
+See the [complete HDR gallery](docs/hdr-gallery.md) and the
+[reproduction workflows](examples/hdr/README.md).
+
 The FEniCSx-dependent solvers are imported lazily, so `random_field` and `chaboche` work on a plain
 numpy/scipy install:
 
@@ -25,13 +36,13 @@ from semwave import shinozuka_deodatis_2d, Chaboche     # no dolfinx needed
 **1. On the path** — nothing to install:
 
 ```bash
-export PYTHONPATH=/home/kltpk89/Data/Filippo/osiris/py_scripts/semwave:$PYTHONPATH
+export PYTHONPATH=/path/to/semwave:$PYTHONPATH
 ```
 
 **2. Installed** — editable, so edits here take effect everywhere:
 
 ```bash
-pip install -e /home/kltpk89/Data/Filippo/osiris/py_scripts/semwave
+pip install -e /path/to/semwave
 ```
 
 `dolfinx` is not on PyPI and is deliberately **not** a declared dependency: install it with
@@ -42,7 +53,7 @@ image's own entries*, which are what make `dolfinx` importable. Overwriting `PYT
 prepending to it is the one mistake that will cost you ten minutes:
 
 ```bash
-SEMWAVE=/home/kltpk89/Data/Filippo/osiris/py_scripts/semwave
+SEMWAVE=/path/to/semwave
 DOLFIN=/usr/local/dolfinx-real/lib/python3.12/dist-packages:/usr/local/lib
 docker run --rm --user "$(id -u):$(id -g)" -e HOME=/tmp -e MPLCONFIGDIR=/tmp \
     -e PYTHONPATH="/semwave:$DOLFIN" \
