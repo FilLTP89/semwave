@@ -1,0 +1,12 @@
+__pycache__/
+*.egg-info/
+*.pyc
+.venv/
+build/
+dist/
+
+# Generated scientific caches and local scratch snapshots
+*.npz
+*.pre-*
+*.pre-aniso
+*.pre-fault
